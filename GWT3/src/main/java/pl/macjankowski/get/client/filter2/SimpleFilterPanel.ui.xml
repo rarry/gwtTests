@@ -1,0 +1,27 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+	/* Add CSS here. See the GWT docs on UI Binder for more details */
+	.important {
+		font-weight: bold;
+	}
+	</ui:style>
+	<g:HTMLPanel>
+
+		<g:HorizontalPanel spacing="1" height="50px">
+			<g:Button ui:field="button" />
+			<g:ListBox ui:field="fieldListBox">
+				<g:item>Name</g:item>
+				<g:item value='2'>Group</g:item>
+				<g:item value='3'>Network element</g:item>
+			</g:ListBox>
+			<g:ListBox ui:field="opListBox">
+				<g:item>equals</g:item>
+				<g:item value='2'>like</g:item>
+			</g:ListBox>
+			<g:TextBox ui:field="valueBox" />
+		</g:HorizontalPanel>
+
+	</g:HTMLPanel>
+</ui:UiBinder> 

@@ -1,4 +1,13 @@
 *.class
+target/
+bin/
+build/
+.settings/
+.project
+.classpath
+
+# GWT
+gwt-unitCache/
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/

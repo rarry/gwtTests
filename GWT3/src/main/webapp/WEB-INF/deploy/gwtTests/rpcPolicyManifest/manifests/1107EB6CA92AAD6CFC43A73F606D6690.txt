@@ -1,0 +1,2 @@
+serviceClass: pl.macjankowski.get.client.GreetingService
+path: 989724995DDB8C8E3B72605136F3683D.gwt.rpc
