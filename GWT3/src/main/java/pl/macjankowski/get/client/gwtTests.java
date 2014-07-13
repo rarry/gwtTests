@@ -1,8 +1,7 @@
 package pl.macjankowski.get.client;
 
-import pl.macjankowski.get.client.filter2.ComplexFilterPanel;
 import pl.macjankowski.get.client.filter2.ComplexFilterPanel.ComplexFilterPanelActions2;
-import pl.macjankowski.get.client.filter2.SimpleFilterPanel;
+import pl.macjankowski.get.client.filter2.FilterState;
 import pl.macjankowski.get.client.filter2.SwapPanel;
 
 import com.google.gwt.core.client.EntryPoint;
@@ -40,7 +39,7 @@ public class gwtTests implements EntryPoint, ComplexFilterPanelActions2 {
 		//
 		// // We can add style names to widgets
 		// sendButton.addStyleName("sendButton");
-		RootPanel.get("sendButtonContainer").add(new ComplexFilterPanel(this, 0));
+		RootPanel.get("sendButtonContainer").add(new SwapPanel(new FilterState.Builder().build(), 0));
 
 		// Add the nameField and sendButton to the RootPanel
 		// Use RootPanel.get() to get the entire body element

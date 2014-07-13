@@ -1,5 +1,10 @@
 package pl.macjankowski.get.client.filter2;
 
+import pl.perfectsource.swing.common.search.ExtendedWorkField;
+import pl.perfectsource.swing.common.search.FilterLogicOperator;
+import pl.perfectsource.swing.common.search.tree.ComplexFilter;
+import pl.perfectsource.swing.common.search.tree.Expression;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -39,22 +44,41 @@ public class ComplexFilterPanel extends Composite {
 
 	private final ComplexFilterPanelActions2 parent;
 
-
 	public ComplexFilterPanel(ComplexFilterPanelActions2 parent, int depth) {
 		this.parent = parent;
-		this.upperPanel = new SwapPanel(depth);
-		this.lowerPanel = new SwapPanel(depth);
+		this.upperPanel = new SwapPanel(state, depth);
+		this.lowerPanel = new SwapPanel(new FilterState.Builder().build(), depth);
 
 		initWidget(uiBinder.createAndBindUi(this));
 	}
-	
-	public void updateUpperPanelState(FilterState simplePanelState){
-		
+
+	public void updateUpperPanelState(FilterState simplePanelState) {
+
 	}
 
 	@UiHandler("collapse")
 	void onClick(ClickEvent e) {
 		parent.onCollapse();
+	}
+
+	public Expression<ExtendedWorkField> getFilter() {
+		Expression<ExtendedWorkField> exp1 = upperPanel.getFilter();
+		int i = opListBox.getSelectedIndex();
+
+		FilterLogicOperator op;
+		if (i == 0) {
+			op = FilterLogicOperator.AND;
+		} else {
+			op = FilterLogicOperator.OR;
+		}
+
+		Expression<ExtendedWorkField> exp2 = lowerPanel.getFilter();
+		return new ComplexFilter.Builder<ExtendedWorkField>().setLeftFilter(exp1).setRightFilter(exp2)
+				.setLogicOperator(op).build();
+	}
+
+	public void setFilter(ComplexFilter<ExtendedWorkField> upperState) {
+		upperPanel.setFilter(upperState.getLeftFilter());
 	}
 
 }

@@ -1,5 +1,9 @@
 package pl.macjankowski.get.client.filter2;
 
+import pl.perfectsource.swing.common.search.ExtendedWorkField;
+import pl.perfectsource.swing.common.search.Filter;
+import pl.perfectsource.swing.common.search.tree.Expression;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -51,7 +55,7 @@ public class SimpleFilterPanel extends Composite {
 	}
 
 	public interface SingleFilterPanel2Actions {
-		public void onExpand(FilterState state);
+		public void onExpand();
 	}
 
 	@UiHandler("button")
@@ -60,6 +64,16 @@ public class SimpleFilterPanel extends Composite {
 	}
 	
 	private FilterState getFilterState(){
-		return new FilterState(fieldListBox.getSelectedIndex(), opListBox.getSelectedIndex(), valueBox.getText());
+		return new FilterState.Builder()
+		.setFieldListBoxIndex( fieldListBox.getSelectedIndex())
+		.setOpListBoxIndex(opListBox.getSelectedIndex())
+		.setValue(valueBox.getText())
+		.build();
+	}
+
+	public Expression<ExtendedWorkField> getFilter() {
+		Filter<ExtendedWorkField> filter = new Filter<ExtendedWorkField>();
+		filter.setValue(valueBox.getText());
+		return filter;
 	}
 }
