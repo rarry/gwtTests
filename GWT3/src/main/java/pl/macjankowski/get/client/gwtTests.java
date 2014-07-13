@@ -7,6 +7,7 @@ import pl.macjankowski.get.client.filter2.SwapPanel;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.i18n.client.Messages;
 import com.google.gwt.user.client.ui.RootPanel;
 
 /**
